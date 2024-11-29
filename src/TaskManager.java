@@ -6,7 +6,7 @@ public class TaskManager {
     private final HashMap<Integer, Epic> epics = new HashMap<>();
     private final HashMap<Integer, Subtask> subtasks = new HashMap<>();
 
-    public int id = 0;
+    private int id = 0;
 
     private int nextId() {
         id++;
@@ -77,7 +77,6 @@ public class TaskManager {
         if (currentTask == null) {
             return;
         }
-        tasks.remove(task.getId());
         tasks.put(task.getId(), task);
     }
 
@@ -94,8 +93,7 @@ public class TaskManager {
         if (currentSubtask == null) {
             return;
         }
-        subtasks.remove(subtask.getId());
-        tasks.put(subtask.getId(), subtask);
+        subtasks.put(subtask.getId(), subtask);
         Epic epic = epics.get(subtask.getEpicId());
         refreshEpicStatus(epic);
     }
@@ -112,15 +110,15 @@ public class TaskManager {
         return subtasks.get(id);
     }
 
-    public ArrayList<Task> displayTasks() {
+    public ArrayList<Task> getTasks() {
         return new ArrayList<>(tasks.values());
     }
 
-    public ArrayList<Task> displayEpics() {
+    public ArrayList<Task> getEpics() {
         return new ArrayList<>(epics.values());
     }
 
-    public ArrayList<Task> displaySubtasks() {
+    public ArrayList<Task> getSubtasks() {
         return new ArrayList<>(subtasks.values());
     }
 

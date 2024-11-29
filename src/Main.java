@@ -25,13 +25,13 @@ public class Main {
         int subtask3Id = taskManager.addSubtask(subtask3);
 
         System.out.println("Распечатываем списки эпиков, задач и подзадач");
-        for (Task task : taskManager.displayTasks()) {
+        for (Task task : taskManager.getTasks()) {
             System.out.println(task);
         }
-        for (Task task : taskManager.displayEpics()) {
+        for (Task task : taskManager.getEpics()) {
             System.out.println(task);
         }
-        for (Task task : taskManager.displaySubtasks()) {
+        for (Task task : taskManager.getSubtasks()) {
             System.out.println(task);
         }
 
@@ -40,13 +40,13 @@ public class Main {
         test2.setStatus(TaskStatus.DONE);
         subtask2.setStatus(TaskStatus.IN_PROGRESS);
         subtask3.setStatus(TaskStatus.DONE);
-        for (Task task : taskManager.displayTasks()) {
+        for (Task task : taskManager.getTasks()) {
             System.out.println(task);
         }
-        for (Task task : taskManager.displayEpics()) {
+        for (Task task : taskManager.getEpics()) {
             System.out.println(task);
         }
-        for (Task task : taskManager.displaySubtasks()) {
+        for (Task task : taskManager.getSubtasks()) {
             System.out.println(task);
         }
 
@@ -54,13 +54,13 @@ public class Main {
         System.out.println("Удаляем одну из задач и один из эпиков");
         taskManager.deleteTaskById(task1Id);
         taskManager.deleteEpicById(epic1Id);
-        for (Task task : taskManager.displayTasks()) {
+        for (Task task : taskManager.getTasks()) {
             System.out.println(task);
         }
-        for (Task task : taskManager.displayEpics()) {
+        for (Task task : taskManager.getEpics()) {
             System.out.println(task);
         }
-        for (Task task : taskManager.displaySubtasks()) {
+        for (Task task : taskManager.getSubtasks()) {
             System.out.println(task);
         }
     }
