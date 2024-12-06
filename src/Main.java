@@ -5,12 +5,12 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Поехали!");
         System.out.println("Создаем две задачи, а также эпик с двумя подзадачами и эпик с одной подзадачей");
-        TaskManager taskManager = new TaskManager();
+        TaskManager taskManager = Managers.getDefault();
 
-        Task test1 = new Task(0, "Task#1", "First test", TaskStatus.NEW);
-        Task test2 = new Task(0, "Task#2", "Second test", TaskStatus.NEW);
-        int task1Id = taskManager.addTask(test1);
-        int task2Id = taskManager.addTask(test2);
+        Task task1 = new Task(0, "Task#1", "First test", TaskStatus.NEW);
+        Task task2 = new Task(0, "Task#2", "Second test", TaskStatus.NEW);
+        int task1Id = taskManager.addTask(task1);
+        int task2Id = taskManager.addTask(task2);
 
         Epic epic1 = new Epic(0, "Epic#1", "First epic", TaskStatus.NEW, new ArrayList<>());
         Epic epic2 = new Epic(0, "Epic#2", "Second epic", TaskStatus.NEW, new ArrayList<>());
@@ -35,9 +35,25 @@ public class Main {
             System.out.println(task);
         }
 
+        System.out.println("Создаем историю просмотров");
+        System.out.println(taskManager.getTaskById(task1Id));
+        System.out.println(taskManager.getTaskById(task1Id));
+        System.out.println(taskManager.getTaskById(task2Id));
+        System.out.println(taskManager.getEpicById(epic1Id));
+        System.out.println(taskManager.getEpicById(epic2Id));
+        System.out.println(taskManager.getSubtaskById(subtask1Id));
+        System.out.println(taskManager.getSubtaskById(subtask2Id));
+        System.out.println(taskManager.getSubtaskById(subtask2Id));
+        System.out.println(taskManager.getSubtaskById(subtask3Id));
+
+        System.out.println("Смотрим историю просмотров");
+        for (Task task : taskManager.getHistory()) {
+            System.out.println(task);
+        }
+
         System.out.println("Изменяем статусы созданных объектов, распечатываем их");
-        test1.setStatus(TaskStatus.IN_PROGRESS);
-        test2.setStatus(TaskStatus.DONE);
+        task1.setStatus(TaskStatus.IN_PROGRESS);
+        task2.setStatus(TaskStatus.DONE);
         subtask2.setStatus(TaskStatus.IN_PROGRESS);
         subtask3.setStatus(TaskStatus.DONE);
         for (Task task : taskManager.getTasks()) {
@@ -61,6 +77,16 @@ public class Main {
             System.out.println(task);
         }
         for (Task task : taskManager.getSubtasks()) {
+            System.out.println(task);
+        }
+
+        System.out.println("Дополняем историю просмотров");
+        System.out.println(taskManager.getEpicById(epic2Id));
+        System.out.println(taskManager.getSubtaskById(subtask3Id));
+        System.out.println(taskManager.getSubtaskById(subtask3Id));
+
+        System.out.println("Смотрим историю просмотров");
+        for (Task task : taskManager.getHistory()) {
             System.out.println(task);
         }
     }
